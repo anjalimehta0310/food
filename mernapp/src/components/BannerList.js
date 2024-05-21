@@ -41,7 +41,7 @@ const BannerList = () => {
           <ShimmerBanner />
         </div>
       ) : (
-        <div className="keen-slider">
+        <div className="keen-slider flex">
           {banners.map((banner) => (
             <Banner key={banner.id} banner={banner} />
           ))}
