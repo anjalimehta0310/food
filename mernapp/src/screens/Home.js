@@ -6,6 +6,8 @@ import axios from 'axios';
 import BannerList from '../components/BannerList'; // Import the BannerList component
 
 const Home = () => {
+    const [banners, setBanners] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         axios
             .post('https://snapsnacks-server.onrender.com/api/foodData', {})
@@ -26,10 +28,31 @@ const Home = () => {
         setSearch(searchText);
     }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7007579&lng=77.4176951&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+        );
+        const json = await response.json();
+        const bannersData = json?.data?.cards[0]?.card?.card?.imageGridCards?.info || [];
+        console.log('Fetched banners:', bannersData); // Debug: Log fetched banners
+        setBanners(bannersData);
+      } catch (error) {
+        console.error('Error fetching banners:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
     return (
         <div>
             <Navbar />
-            <BannerList /> {/* Render the BannerList component */}
+            <BannerList isLoading={isLoading} banners={banners} />
             <div className="text-center justifyContent-center m-auto">
                 <h1 className="mt-4">
                     <strong>

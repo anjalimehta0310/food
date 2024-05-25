@@ -1,49 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from './Banner';
 import ShimmerBanner from '../components/ShimmerBanner';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
+import {
+  ArrowLongLeftIcon,
+  ArrowLongRightIcon,
+} from '@heroicons/react/24/outline';
 
-const BannerList = () => {
-  const [banners, setBanners] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7007579&lng=77.4176951&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
-        const json = await response.json();
-        
-        // Check if the necessary properties exist in the response
-        const bannersData = json?.data?.cards[0]?.card?.card?.imageGridCards?.info;
-  
-        if (bannersData) {
-          setBanners(bannersData);
-          setIsLoading(false);
-        } else {
-          console.error('Data structure does not match expectations:', json);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.error('Error fetching banners:', error);
-        setIsLoading(false);
-      }
-    };
-  
-    fetchData();
-  }, []);
-  
+const BannerList = ({ isLoading, banners }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [sliderRef, instanceRef] = useKeenSlider({
+    mode: 'snap',
+    slides: { perView: 8, spacing: 0 },  
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    breakpoints: {
+      '(max-width: 480px)': {
+        slides: { perView: 2, spacing: 0 }, 
+      },
+      '(min-width: 480px)': {
+        slides: { perView: 4, spacing: 0 },
+      },
+      '(min-width: 768px)': {
+        slides: { perView: 6, spacing: 0 },
+      },
+      '(min-width: 1024px)': {
+        slides: { perView: 8, spacing: 0 },
+      },
+    },
+  });
+
+  if (!banners) {
+    return null;
+  }
 
   return (
-    <div className="container-max">
+    <div className='container-max px-20'> 
+      <div className='flex justify-between items-center mb-4 pt-7'>
+        <h1 className='font-bold text-3xl text-white'>
+          Anjali, what's on your mind??
+        </h1>
+
+        {instanceRef.current && (
+          <div className='flex gap-2 items-center'>
+            <button
+              disabled={currentSlide === 0}
+              onClick={() => instanceRef.current?.prev()}
+              className='bg-black p-2 rounded-full disabled:text-gray-300'
+            >
+              <ArrowLongLeftIcon className='w-4 h-4' />
+            </button>
+            <button
+              disabled={
+                currentSlide ===
+                instanceRef?.current?.track?.details?.slides?.length - 1
+              }
+              onClick={() => instanceRef.current?.next()}
+              className='bg-black p-2 rounded-full disabled:text-gray-300'
+            >
+              <ArrowLongRightIcon className='w-4 h-4' />
+            </button>
+          </div>
+        )}
+      </div>
+
       {isLoading ? (
-        <div className="flex gap-4 md:gap-8 mb-8">
-          {/* Display loading state */}
-          <ShimmerBanner />
-          <ShimmerBanner />
-          <ShimmerBanner />
+        <div className='flex gap-4 md:gap-8 mb-8'>
+          {Array.from({ length: 8 }).map((_, i) => ( 
+            <ShimmerBanner key={i} />
+          ))}
         </div>
       ) : (
-        <div className="keen-slider">
+        <div ref={sliderRef} className='keen-slider '>
           {banners.map((banner) => (
-            <Banner key={banner.id} banner={banner} />
+            <Banner banner={banner} key={banner.id} />
           ))}
         </div>
       )}

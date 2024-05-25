@@ -1,22 +1,11 @@
+import { CDN_URL } from '../utils/constant';
+
 const Banner = ({ banner }) => {
-    return (
-      <div className='inline-flex'>
-        <img 
-          className='' 
-          src={'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/' + banner?.imageId} 
-          alt='' 
-          style={{ 
-            display: 'block', // Display as block element
-            width: '150px',   // Set width to make it smaller
-            height: 'auto',   // Maintain aspect ratio
-            marginRight: '10px', // Add some space between images
-            backgroundColor:'#000000',
-            color:'#000000'
-          }} 
-        />
-      </div>
-    );
-  };
-  
-  export default Banner;
-  
+  return (
+    <div className='keen-slider__slide flex justify-center items-center'>
+      <img className='block w-full h-full object-contain mix-blend-screen' src={CDN_URL + banner?.imageId} alt={banner?.title || 'Banner Image'} />
+    </div>
+  );
+};
+
+export default Banner;
