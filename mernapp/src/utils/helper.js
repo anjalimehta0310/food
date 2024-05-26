@@ -12,3 +12,9 @@ export function filterProductData(searchText, products) {
   
     return filteredData;
 }
+
+// export default filterfooditem(searchText,foodItems){
+//   const filterfooditem=foodItems.filter((foodItem)=>{
+//     return foodItem?.displayName?.
+//   })
+// }
