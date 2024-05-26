@@ -8,6 +8,7 @@ import { IoMdBicycle } from "react-icons/io";
 import pic1 from "../assests/pic1.png";
 import pic2 from "../assests/pic2.png";
 import pic3 from "../assests/pic3.png";
+import { IoReturnUpBack } from "react-icons/io5";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -38,9 +39,9 @@ const RestaurantMenu = () => {
     }
   }
 
-  const handleQuantityChange = (e) => {
-    setQuantity(parseInt(e.target.value));
-  };
+  // const handleQuantityChange = (e) => {
+  //   setQuantity(parseInt(e.target.value));
+  // };
 
   const handleAddToCart = (menuItem) => {
     dispatch({
@@ -83,7 +84,7 @@ const RestaurantMenu = () => {
           <div>
           {/* <h1 className="text-lg">{res?.sla?.lastMileTravelString}</h1> */}
           <h1 className="text-lg flex items-center space-x-2">
-            <IoMdBicycle className="mr-2" /> {/* Add margin to the right */}
+            <IoMdBicycle className="mr-2" /> 
             {res?.feeDetails?.message?.replace(/<[^>]+>/g, '')}
           </h1>
         </div>
@@ -108,10 +109,10 @@ const RestaurantMenu = () => {
         <div className="w-full p-4">
           <div className="absolute top-24 right-0">
             <button
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className=" text-white py-2 px-4 rounded"
               onClick={() => navigate('/Body')}
             >
-              Go Back
+             <IoReturnUpBack style={{ fontSize: '24px' }}/>
             </button>
           </div>
           <div className="mx-auto w-full max-w-3xl">

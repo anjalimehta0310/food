@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import Navbar from "../components/Navbar";
 import TopRated from "../screens/TopRated";
-import ResItem from "./ResItem";
+import Offer from "./Offer";
+import Cuisins from "./Cuisins";
+import Footer from "../components/Footer";
+
 
 const Body = () => {
     const [allRestaurants, setAllRestaurants] = useState([]);
@@ -66,7 +69,9 @@ const Body = () => {
                 ))}
             </div>
             <TopRated/>
-
+            <Offer/>
+            <Cuisins/>
+            <Footer/>
         </>
     );
 };

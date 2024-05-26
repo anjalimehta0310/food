@@ -8,6 +8,7 @@ const TopRatedCard = ({ name, cuisines, cloudinaryImageId, avgRating }) => {
                     src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId}
                     className="w-full h-32 object-cover mb-1 rounded-t-lg"
                     alt={name}
+                    style={{ filter: 'brightness(70%)' }}
                 />
                 <h2 className="font-bold text-lg overflow-hidden text-ellipsis whitespace-nowrap mb-1">{name}</h2>
                 <div className="mb-1 flex items-center">
