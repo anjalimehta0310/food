@@ -15,6 +15,7 @@ import Body from './screens/Body.js';
 import Shimmer from './components/Shimmer.js';
 import RestaurantMenu from './screens/RestaurantMenu.js';
 import AlanAIIntegration from './voiceAlan/AlanAi.js';
+import InstamartMenu from './screens/InstamartMenu.js';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/instamart" element={<Instamart/>}/>
          <Route exact path ="/Body" element={<Body/>}/>
         <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
+        <Route exact path="/product/:resId" element={<InstamartMenu/>}/>
         <Route path="/AlanAi" element={<AlanAIIntegration/>}/>
       </Routes>
     </div>

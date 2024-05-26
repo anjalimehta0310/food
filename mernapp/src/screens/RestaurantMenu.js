@@ -117,9 +117,8 @@ const RestaurantMenu = () => {
           <div className="mx-auto w-full max-w-3xl">
             <div className="accordion">
               {menu && menu.map((item) => (
-                <div
-                  key={item.card?.info?.id}
-                  className="accordion-item flex items-center mb-4 bg-gray-200 p-4 rounded shadow relative" // Add relative positioning
+                <div key={item.card?.info?.id}
+                className="accordion-item flex items-center mb-4 bg-gray-200 p-4 rounded shadow relative" 
                 >
                   <div className="flex-grow">
                     <h2 className="text-lg font-bold mb-2">{item.card?.info?.name}</h2>
