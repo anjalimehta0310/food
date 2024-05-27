@@ -28,7 +28,7 @@ const Login = () => {
 
     //now we make a post request tot he server with 'axios'
     //to validate our user whhether the user already exists in our database or not:-
-    axios.post("https://snapsnacks-server.onrender.com/api/login",{
+    axios.post("http://localhost:5000/api/login",{
       email:loginData.email,
       password:loginData.password
     })

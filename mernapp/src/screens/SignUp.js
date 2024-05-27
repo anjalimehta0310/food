@@ -23,7 +23,7 @@ const SignUp = () => {
         //MEHTOD-1:-
         //USING AXIOS LIBRARY
         //LATEST,QUICK,EASY,BEST !!:-
-        axios.post("https://snapsnacks-server.onrender.com/api/createuser", {
+        axios.post("http://localhost:5000/api/createuser", {
             name: credentials.name,
             email: credentials.email,
             password: credentials.password,
