@@ -12,7 +12,7 @@ const MyOrders = () => {
 
 
     useEffect(() => {
-        axios.post("https://snapsnacks-server.onrender.com/api/getOrders", {
+        axios.post("http://localhost:5000/api/order", {
             email: localStorage.getItem("email")
         })
             .then((response) => {

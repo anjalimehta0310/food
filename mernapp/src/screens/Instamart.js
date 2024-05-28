@@ -18,8 +18,8 @@ const Instamart = () => {
       const data = await fetch("https://www.swiggy.com/api/instamart/home?pageNo=1&layoutId=3173&storeId=1387080&clientId=INSTAMART-APP");
       const json = await data.json();
       console.log(json);
-      setProducts(json?.data?.widgets[1]?.data);
-      setFilteredProducts(json?.data?.widgets[1]?.data);
+      setProducts(json?.data?.widgets[0]?.data);
+      setFilteredProducts(json?.data?.widgets[0]?.data);
     } catch (err) {
       console.log(err);
     }

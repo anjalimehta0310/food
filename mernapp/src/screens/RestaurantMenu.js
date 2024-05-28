@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
       const json = await data.json();
       console.log(json);
       setMenu(
-        json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards
+        json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards
       );
     } catch (error) {
       console.log("error fetching", error);
