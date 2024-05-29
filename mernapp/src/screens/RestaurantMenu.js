@@ -50,7 +50,7 @@ const RestaurantMenu = () => {
       name: menuItem.name,
       description: menuItem.description,
       price: menuItem.price,
-      image: menuItem.image,
+      image: "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+menuItem.imageId,
       qty: quantity,
       size: "yourSize", 
     });
